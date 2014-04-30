@@ -221,6 +221,18 @@ namespace TweetSharp
         }
     }
 
+    public class TwitterUserStreamUserEvent : TwitterUserStreamEventBase
+    {
+        public TwitterUserStreamUserEvent(TwitterUserStreamEventBase @base)
+        {
+            Source = @base.Source;
+            Target = @base.Target;
+            Event = @base.Event;
+            CreatedDate = @base.CreatedDate;
+            RawSource = @base.RawSource;
+        }
+    }
+
     /// <summary>
     /// Denotes the end of a user stream
     /// </summary>

@@ -61,7 +61,7 @@ namespace TweetSharp
 #if !WINDOWS_PHONE
             return 
 #endif
-            WithHammockUserStreaming(options, action, "user.json");
+ WithHammockUserStreaming(options, action, "user.json?include_followings_activity=true");
         }
 
 #if !WINDOWS_PHONE

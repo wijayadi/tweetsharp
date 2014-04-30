@@ -224,12 +224,6 @@
   <ItemGroup>
     <Content Include="assembly.ico" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\hammock\src\net20\Hammock\Hammock.Net20.csproj">
-      <Project>{80647b8c-e162-4e34-a758-590280f11b97}</Project>
-      <Name>Hammock.Net20</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

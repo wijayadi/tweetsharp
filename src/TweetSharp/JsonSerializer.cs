@@ -152,9 +152,17 @@ namespace TweetSharp
                 else
                 {
                     var artifact = JObject.Parse(content);
-                    if (artifact["target_object"] != null)
+                    if (artifact["event"] != null)
                     {
-                        return DeserializeUserStreamEvent(content);
+                        if (artifact["target_object"] != null)
+                        {
+                            return DeserializeUserStreamEvent(content);
+                        }
+                        else
+                        {
+                            //此処でtarget_objectがないイベントが弾かれてた
+                            return DeserializeUserStreamUserEvent(content);
+                        }
                     }
 
                     if (artifact["user"] != null)
@@ -215,6 +223,22 @@ namespace TweetSharp
             {
                 result.TargetObject = DeserializeSingle(json, typeof(TwitterStatus)) as TwitterStatus;
             }
+
+            return result;
+        }
+
+        /// <summary>
+        /// 独自追加。
+        /// </summary>
+        /// <param name="content"></param>
+        /// <returns></returns>
+        private object DeserializeUserStreamUserEvent(string content)
+        {
+            var @event = DeserializeSingle(content, typeof(TwitterUserStreamEventBase)) as TwitterUserStreamEventBase;
+
+            var target = JObject.Parse(content);
+
+            var result = new TwitterUserStreamUserEvent(@event);
 
             return result;
         }
